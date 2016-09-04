@@ -11,7 +11,31 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
     public class FlightComputer
     {
         /// <summary>
-        /// Execute a burn
+        /// Send an attitude (point in a direction, and hold) command to the flight computer
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="attitude"></param>
+        /// <param name="frame"></param>
+        /// <param name="orientation"></param>
+        /// <param name="extraDelayInSeconds"></param>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool attitude(string mode, string attitude, string frame, string orientation = "0,0,0,1", double extraDelayInSeconds = 0)
+        {
+            ConfigNode node = new ConfigNode("AttitudeCommand");
+            node.AddValue("Mode", mode);
+            node.AddValue("Attitude", attitude);
+            node.AddValue("Frame", frame);
+            node.AddValue("Orientation", orientation);
+            node.AddValue("Altitude", "NaN");
+            node.AddValue("TimeStamp", SpaceCenter.UT);
+            node.AddValue("ExtraDelay", extraDelayInSeconds);
+            node.AddValue("Guid", new Guid());
+            return sendCommand(node);
+        }
+
+        /// <summary>
+        /// Send a burn command to the flight computer
         /// </summary>
         /// <param name="throttle"></param>
         /// <param name="durationInSeconds"></param>
