@@ -11,6 +11,16 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
     public class FlightComputer
     {
         /// <summary>
+        /// Check for a maneuver node to interaact with
+        /// </summary>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool hasManeuverNode()
+        {
+            return SpaceCenter.ActiveVessel.Control.Nodes.Count > 0;
+        }
+        
+        /// <summary>
         /// Kill the rotation of the active vessel (stabilize its orientation)
         /// </summary>
         /// <param name="extraDelayInSeconds"></param>
@@ -29,6 +39,7 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         [KRPCMethod]
         public bool node(double extraDelayInSeconds = 0)
         {
+            if (!hasManeuverNode()) return false;
             return attitude("AttitudeHold", "Prograde", "Maneuver", extraDelayInSeconds, SpaceCenter.ActiveVessel.Control.Nodes[0].UT-180);
         }
 
@@ -90,7 +101,32 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
             node.AddValue("Guid", new Guid());
             return sendCommand(node);
         }
-        
+
+        /// <summary>
+        /// Executes the next maneuver node of the active vessel
+        /// </summary>
+        /// <param name="extraDelayInSeconds"></param>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool execManeuver (double extraDelayInSeconds = 0)
+        {
+            if (!hasManeuverNode()) return false;
+            Vessel vessel = SpaceCenter.ActiveVessel;
+            double mass = vessel.Mass;
+            double isp = vessel.SpecificImpulse;
+            double g = SpaceCenter.G;
+            Node manNode = vessel.Control.Nodes[0];
+            double burnTime = (mass-(mass*(-manNode.DeltaV/(isp*g))))/(vessel.Thrust/(isp*g));
+            ConfigNode cNode = new ConfigNode("ManeuverCommand");
+            cNode.AddValue("NodeIndex", 0);
+            cNode.AddValue("KaCItemId", "");//fix in a minute
+            cNode.AddValue("TimeStamp", manNode.UT-(burnTime/2));
+            cNode.AddValue("ExtraDelay", extraDelayInSeconds);
+            cNode.AddValue("Guid", new Guid());
+            node();
+            return sendCommand(cNode);
+        }
+
         /// <summary>
         /// Internal method to send a command to the flight computer
         /// </summary>
