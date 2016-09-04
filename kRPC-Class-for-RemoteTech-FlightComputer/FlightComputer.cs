@@ -11,6 +11,17 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
     public class FlightComputer
     {
         /// <summary>
+        /// Kill the rotation of the active vessel (stabilize its orientation)
+        /// </summary>
+        /// <param name="extraDelayInSeconds"></param>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool killRotation(double extraDelayInSeconds = 0)
+        {
+            return attitude("KillRot", "Prograde", "World", SpaceCenter.ActiveVessel.Rotation(SpaceCenter.ActiveVessel.OrbitalReferenceFrame).ToString(), extraDelayInSeconds);
+        }
+        
+        /// <summary>
         /// Send an attitude (point in a direction, and hold) command to the flight computer
         /// </summary>
         /// <param name="mode"></param>
