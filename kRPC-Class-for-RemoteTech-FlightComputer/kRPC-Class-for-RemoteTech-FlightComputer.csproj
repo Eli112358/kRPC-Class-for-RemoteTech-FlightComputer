@@ -30,83 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-UnityScript-firstpass">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\Assembly-UnityScript-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="Boo.Lang">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\Boo.Lang.dll</HintPath>
-    </Reference>
     <Reference Include="KRPC">
       <HintPath>..\..\..\Kerbal Space Program\GameData\kRPC\KRPC.dll</HintPath>
     </Reference>
     <Reference Include="KRPC.KerbalAlarmClock">
       <HintPath>..\..\..\Kerbal Space Program\GameData\kRPC\KRPC.KerbalAlarmClock.dll</HintPath>
     </Reference>
-    <Reference Include="KRPC.RemoteTech">
-      <HintPath>..\..\..\Kerbal Space Program\GameData\kRPC\KRPC.RemoteTech.dll</HintPath>
-    </Reference>
     <Reference Include="KRPC.SpaceCenter">
       <HintPath>..\..\..\Kerbal Space Program\GameData\kRPC\KRPC.SpaceCenter.dll</HintPath>
-    </Reference>
-    <Reference Include="KSPAssets">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\KSPAssets.dll</HintPath>
-    </Reference>
-    <Reference Include="KSPCore">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\KSPCore.dll</HintPath>
     </Reference>
     <Reference Include="KSPUtil">
       <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\KSPUtil.dll</HintPath>
     </Reference>
-    <Reference Include="MiscUtil-r285">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\MiscUtil-r285.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Security">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\Mono.Security.dll</HintPath>
-    </Reference>
     <Reference Include="RemoteTech">
       <HintPath>..\..\..\Kerbal Space Program\GameData\RemoteTech\Plugins\RemoteTech.dll</HintPath>
     </Reference>
-    <Reference Include="SaveUpgradePipeline.Core">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\SaveUpgradePipeline.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="TDx.TDxInput">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\TDx.TDxInput.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="TrackIRUnity">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\TrackIRUnity.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityScript.Lang">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\UnityScript.Lang.dll</HintPath>
-    </Reference>
-    <Reference Include="Vectrosity">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\Vectrosity.dll</HintPath>
-    </Reference>
-    <Reference Include="xmldiffpatch">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\xmldiffpatch.dll</HintPath>
-    </Reference>
-    <Reference Include="XmlDiffPatch.View">
-      <HintPath>S:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP_Data\Managed\XmlDiffPatch.View.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

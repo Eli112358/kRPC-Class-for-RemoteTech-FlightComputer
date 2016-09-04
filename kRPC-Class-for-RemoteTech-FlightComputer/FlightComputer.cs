@@ -1,6 +1,7 @@
 ﻿using KRPC.KerbalAlarmClock;
 using KRPC.Service.Attributes;
 using KRPC.SpaceCenter.Services;
+using RemoteTech.API;
 using System;
 using UnityEngine;
 
@@ -204,7 +205,7 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
 
         internal bool sendCommand (ConfigNode node)
         {
-            return RemoteTech.API.API.QueueCommandToFlightComputer(node);
+            return API.QueueCommandToFlightComputer(node);
         }
 
         /// <summary>
