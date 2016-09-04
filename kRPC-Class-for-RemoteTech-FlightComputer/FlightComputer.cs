@@ -11,6 +11,16 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
     public class FlightComputer
     {
         /// <summary>
+        /// Get a flight computer instance
+        /// </summary>
+        /// <returns></returns>
+        [KRPCMethod]
+        public static FlightComputer getFlightComputer ()
+        {
+            return new FlightComputer();
+        }
+
+        /// <summary>
         /// Check for a maneuver node to interaact with
         /// </summary>
         /// <returns></returns>
@@ -123,15 +133,10 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
             cNode.AddValue("TimeStamp", manNode.UT-(burnTime/2));
             cNode.AddValue("ExtraDelay", extraDelayInSeconds);
             cNode.AddValue("Guid", new Guid());
-            node();
+            node(extraDelayInSeconds);
             return sendCommand(cNode);
         }
 
-        /// <summary>
-        /// Internal method to send a command to the flight computer
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
         internal bool sendCommand (ConfigNode node)
         {
             return RemoteTech.API.API.QueueCommandToFlightComputer(node);
