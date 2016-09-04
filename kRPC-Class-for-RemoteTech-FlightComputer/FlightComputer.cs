@@ -2,6 +2,7 @@
 using KRPC.Service.Attributes;
 using KRPC.SpaceCenter.Services;
 using System;
+using UnityEngine;
 
 namespace kRPC_Class_for_RemoteTech_FlightComputer
 {
@@ -113,6 +114,11 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         public bool target (Axes axes, double extraDelayInSeconds = 0)
         {
             return attitude("AttitudeHold", axes.ToString(), "TargetParallel", extraDelayInSeconds);
+        }
+
+        public bool custom (float pitch, float heading, float roll, double extraDelayInSeconds = 0)
+        {
+            return attitude("AttitudeHold", "Surface", "North", extraDelayInSeconds, -1, Quaternion.Euler(roll, pitch, heading).ToString());
         }
 
         /// <summary>
