@@ -18,7 +18,18 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         [KRPCMethod]
         public bool killRotation(double extraDelayInSeconds = 0)
         {
-            return attitude("KillRot", "Prograde", "World", SpaceCenter.ActiveVessel.Rotation(SpaceCenter.ActiveVessel.OrbitalReferenceFrame).ToString(), extraDelayInSeconds);
+            return attitude("KillRot", "Prograde", "World", extraDelayInSeconds, -1, SpaceCenter.ActiveVessel.Rotation(SpaceCenter.ActiveVessel.OrbitalReferenceFrame).ToString());
+        }
+
+        /// <summary>
+        /// Point in the direction of the next maneuver node's burn vector
+        /// </summary>
+        /// <param name="extraDelayInSeconds"></param>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool node(double extraDelayInSeconds = 0)
+        {
+            return attitude("AttitudeHold", "Prograde", "Maneuver", extraDelayInSeconds, SpaceCenter.ActiveVessel.Control.Nodes[0].UT-180);
         }
         
         /// <summary>
@@ -31,7 +42,7 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         /// <param name="extraDelayInSeconds"></param>
         /// <returns></returns>
         [KRPCMethod]
-        public bool attitude(string mode, string attitude, string frame, string orientation = "0,0,0,1", double extraDelayInSeconds = 0)
+        public bool attitude(string mode, string attitude, string frame, double extraDelayInSeconds = 0, double timestamp = -1, string orientation = "0,0,0,1")
         {
             ConfigNode node = new ConfigNode("AttitudeCommand");
             node.AddValue("Mode", mode);
@@ -39,7 +50,7 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
             node.AddValue("Frame", frame);
             node.AddValue("Orientation", orientation);
             node.AddValue("Altitude", "NaN");
-            node.AddValue("TimeStamp", SpaceCenter.UT);
+            node.AddValue("TimeStamp", (timestamp > -1 ? timestamp : SpaceCenter.UT));
             node.AddValue("ExtraDelay", extraDelayInSeconds);
             node.AddValue("Guid", new Guid());
             return sendCommand(node);
