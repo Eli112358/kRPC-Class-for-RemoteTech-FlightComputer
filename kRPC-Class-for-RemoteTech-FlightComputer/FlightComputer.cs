@@ -29,7 +29,18 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         {
             return SpaceCenter.ActiveVessel.Control.Nodes.Count > 0;
         }
-        
+
+        /// <summary>
+        /// Return to the off state
+        /// </summary>
+        /// <param name="extraDelayInSeconds"></param>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool off (double extraDelayInSeconds = 0)
+        {
+            return attitude("Off", "Prograde", "World", extraDelayInSeconds);
+        }
+
         /// <summary>
         /// Kill the rotation of the active vessel (stabilize its orientation)
         /// </summary>
