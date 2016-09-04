@@ -31,6 +31,20 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         {
             return attitude("AttitudeHold", "Prograde", "Maneuver", extraDelayInSeconds, SpaceCenter.ActiveVessel.Control.Nodes[0].UT-180);
         }
+
+        /// <summary>
+        /// Point in the direction of the velocity relative to the target
+        /// </summary>
+        /// <param name="isPrograde"></param>
+        /// <param name="extraDelayInSeconds"></param>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool relativeVelocity (bool isPrograde, double extraDelayInSeconds = 0)
+        {
+            if (SpaceCenter.TargetBody.Equals(null) && SpaceCenter.TargetDockingPort.Equals(null) && SpaceCenter.TargetVessel.Equals(null))
+                return false;
+            return attitude("AttitudeHold", (isPrograde ? "Prograde" : "Retrograde"), "TargetVelocity", extraDelayInSeconds);
+        }
         
         /// <summary>
         /// Send an attitude (point in a direction, and hold) command to the flight computer
