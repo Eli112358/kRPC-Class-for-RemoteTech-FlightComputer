@@ -68,7 +68,7 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         }
 
         /// <summary>
-        /// Point in the direction of one of the six Navbal axes
+        /// Point in the direction of one of the six Navbal axes, in the orbital reference frame
         /// </summary>
         /// <param name="axes"></param>
         /// <param name="extraDelayInSeconds"></param>
@@ -77,6 +77,30 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         public bool orbital (Axes axes, double extraDelayInSeconds = 0)
         {
             return attitude("AttitudeHold", axes.ToString(), "Orbit", extraDelayInSeconds);
+        }
+
+        /// <summary>
+        /// Point in the direction of one of the six Navbal axes, in the surface reference frame
+        /// </summary>
+        /// <param name="axes"></param>
+        /// <param name="extraDelayInSeconds"></param>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool surface (Axes axes, double extraDelayInSeconds = 0)
+        {
+            return attitude("AttitudeHold", axes.ToString(), "Surface", extraDelayInSeconds);
+        }
+
+        /// <summary>
+        /// Point in the direction of one of the six Navbal axes, in the target reference frame
+        /// </summary>
+        /// <param name="axes"></param>
+        /// <param name="extraDelayInSeconds"></param>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool target (Axes axes, double extraDelayInSeconds = 0)
+        {
+            return attitude("AttitudeHold", axes.ToString(), "TargetParallel", extraDelayInSeconds);
         }
 
         /// <summary>
