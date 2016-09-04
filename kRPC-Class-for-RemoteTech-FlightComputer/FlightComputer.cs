@@ -66,15 +66,28 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
                 return false;
             return attitude("AttitudeHold", (isPrograde ? "Prograde" : "Retrograde"), "TargetVelocity", extraDelayInSeconds);
         }
-        
+
         /// <summary>
-        /// Send an attitude (point in a direction, and hold) command to the flight computer
+        /// Point in the direction of one of the six Navbal axes
+        /// </summary>
+        /// <param name="axes"></param>
+        /// <param name="extraDelayInSeconds"></param>
+        /// <returns></returns>
+        [KRPCMethod]
+        public bool orbital (Axes axes, double extraDelayInSeconds = 0)
+        {
+            return attitude("AttitudeHold", axes.ToString(), "Orbit", extraDelayInSeconds);
+        }
+
+        /// <summary>
+        /// Point in a direction, and hold
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="attitude"></param>
         /// <param name="frame"></param>
-        /// <param name="orientation"></param>
         /// <param name="extraDelayInSeconds"></param>
+        /// <param name="timestamp"></param>
+        /// <param name="orientation"></param>
         /// <returns></returns>
         [KRPCMethod]
         public bool attitude(string mode, string attitude, string frame, double extraDelayInSeconds = 0, double timestamp = -1, string orientation = "0,0,0,1")
@@ -92,14 +105,14 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         }
 
         /// <summary>
-        /// Send a burn command to the flight computer
+        /// Burn at the given throttle and for the given duration
         /// </summary>
         /// <param name="throttle"></param>
         /// <param name="durationInSeconds"></param>
         /// <param name="extraDelayInSeconds"></param>
         /// <returns></returns>
         [KRPCMethod]
-        public bool burn (double throttle, double durationInSeconds, double extraDelayInSeconds)
+        public bool burn (double throttle, double durationInSeconds, double extraDelayInSeconds = 0)
         {
             ConfigNode node = new ConfigNode("BurnCommand");
             node.AddValue("Throttle", throttle);
@@ -140,6 +153,20 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
         internal bool sendCommand (ConfigNode node)
         {
             return RemoteTech.API.API.QueueCommandToFlightComputer(node);
+        }
+
+        /// <summary>
+        /// Navbal axes
+        /// </summary>
+        [KRPCEnum]
+        public enum Axes
+        {
+            Prograde,
+            Retrograde,
+            RadialPlus,
+            RadialMinus,
+            NormalPlus,
+            NormalMinus
         }
     }
 }
