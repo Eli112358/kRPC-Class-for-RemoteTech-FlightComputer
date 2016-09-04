@@ -39,6 +39,9 @@
     <Reference Include="KRPC">
       <HintPath>..\..\..\Kerbal Space Program\GameData\kRPC\KRPC.dll</HintPath>
     </Reference>
+    <Reference Include="KRPC.KerbalAlarmClock">
+      <HintPath>..\..\..\Kerbal Space Program\GameData\kRPC\KRPC.KerbalAlarmClock.dll</HintPath>
+    </Reference>
     <Reference Include="KRPC.RemoteTech">
       <HintPath>..\..\..\Kerbal Space Program\GameData\kRPC\KRPC.RemoteTech.dll</HintPath>
     </Reference>

@@ -1,4 +1,5 @@
-﻿using KRPC.Service.Attributes;
+﻿using KRPC.KerbalAlarmClock;
+using KRPC.Service.Attributes;
 using KRPC.SpaceCenter.Services;
 using System;
 
@@ -175,9 +176,19 @@ namespace kRPC_Class_for_RemoteTech_FlightComputer
             double g = SpaceCenter.G;
             Node manNode = vessel.Control.Nodes[0];
             double burnTime = (mass-(mass*(-manNode.DeltaV/(isp*g))))/(vessel.Thrust/(isp*g));
+            string alarmId = "";
+            var nodeAlarmList = KerbalAlarmClock.AlarmsWithType(AlarmType.Maneuver);
+            for (int x = 0; x < nodeAlarmList.Count; x++)
+            {
+                if (nodeAlarmList[x].Vessel.Equals(SpaceCenter.ActiveVessel))
+                {
+                    alarmId = nodeAlarmList[x].ID;
+                    break;
+                }
+            }
             ConfigNode cNode = new ConfigNode("ManeuverCommand");
             cNode.AddValue("NodeIndex", 0);
-            cNode.AddValue("KaCItemId", "");//fix in a minute
+            cNode.AddValue("KaCItemId", alarmId);
             cNode.AddValue("TimeStamp", manNode.UT-(burnTime/2));
             cNode.AddValue("ExtraDelay", extraDelayInSeconds);
             cNode.AddValue("Guid", new Guid());
